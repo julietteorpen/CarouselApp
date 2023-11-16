@@ -2,6 +2,8 @@
 
 - A simple React Native project to display a carousel of recipes
 
+- To run project: Clone project, `yarn` install, run `yarn start` and select which simulator environment you would like to run the project on.
+
 Aims of project:
 
 - [ ] Fetch recipes from the SimplyCook api
