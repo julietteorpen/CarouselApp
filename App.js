@@ -21,7 +21,14 @@ export default function App() {
     <View style={styles.container}>
       <StatusBar style="auto" />
 
-      <Text style={{ margin: "20%" }}>Simply Cook</Text>
+      <Text style={{ margin: "20%", ...styles.bigBoldHeading }}>
+        Simply Cook
+      </Text>
+      {loading ? (
+        <ActivityIndicator />
+      ) : (
+        <RecipeCarousel recipeArray={recipeArray} />
+      )}
     </View>
   );
 }
@@ -32,5 +39,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  bigBoldHeading: {
+    fontSize: 24,
+    fontWeight: "bold",
   },
 });
