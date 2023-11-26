@@ -6,22 +6,28 @@ import {
   Image,
   Dimensions,
 } from "react-native";
+import { useEffect, useState } from "react";
 import FlipCard from "react-native-flip-card";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 export default function RecipeCarousel({ recipeArray }) {
   const { width, height } = Dimensions.get("screen");
-  const filteredArray = [];
-  recipeArray.map((recipe, index) => {
-    if (recipe.allergens.includes("Fish" || "Crustaceans" || "Eggs")) {
-      filteredArray.push(recipe);
-    }
-  });
+  const [filteredArray, setFilteredArray] = useState([]);
+
+  useEffect(() => {
+    const newFilteredArray = recipeArray.filter(
+      (recipe) =>
+        recipe.allergens.includes("Fish") ||
+        recipe.allergens.includes("Crustaceans") ||
+        recipe.allergens.includes("Eggs")
+    );
+    setFilteredArray(newFilteredArray);
+  }, [recipeArray]);
 
   return (
     <View style={{ height: height / 1.6 }}>
       <FlatList
-        data={recipeArray}
+        data={filteredArray}
         keyExtractor={(item) => item.id}
         horizontal={true}
         renderItem={({ item }) => {
